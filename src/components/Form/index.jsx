@@ -7,11 +7,9 @@ const ALBUMS_URL = (param) => `https://itunes.apple.com/search?term=${param}`;
 
 const getAlbums = async (param) => {
   try {
-    const albums = await fetch(ALBUMS_URL(param));
-    if (!albums.ok) {
-      return await (await fetch(ALBUMS_URL(param))).json();
-    }
-    return albums.json();
+    const response = await fetch(ALBUMS_URL(param));
+
+    return response.json();
   } catch {
     throw new Error("Api Error!");
   }
@@ -36,8 +34,6 @@ const Form = ({ setAlbums }) => {
 
     setAlbums(sortedAlbums);
   };
-
-  console.log('render form')
 
   return (
     <form onSubmit={handleSubmit}>

@@ -3,13 +3,13 @@ import T from 'prop-types';
 
 import styles from './List.module.css';
 
-const List = ({ state }) => {
+const List = ({ list }) => {
   return (
     <ul className={styles.list}>
-      {state.map((letter, index) => {
+      {list.map((item, index) => {
         return (
-          <li key={letter + index} className="li">
-            {letter}
+          <li key={item + index} className="li">
+            {item}
           </li>
         );
       })}
@@ -18,7 +18,7 @@ const List = ({ state }) => {
 };
 
 List.propTypes = {
-  state: T.arrayOf(T.string)
+  list: T.arrayOf(T.string)
 }
 
 export default List;

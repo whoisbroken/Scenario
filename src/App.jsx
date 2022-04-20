@@ -7,27 +7,27 @@ import List from "./components/List";
 const LETTERS = ["A", "B", "C", "D", "E"];
 
 const App = () => {
-  const [state, setState] = React.useState(LETTERS);
+  const [list, setList] = React.useState(LETTERS);
   const [albums, setAlbums] = React.useState([]);
 
   const tick = React.useCallback(() => {
-    const tempState = [...state];
+    const tempList = [...list];
     const tempAlbums = [...albums];
 
     if (albums.length) {
-      tempState.shift();
+      tempList.shift();
       const firstElement = tempAlbums.shift();
-      tempState.push(firstElement);
+      tempList.push(firstElement);
 
-      setState(tempState);
+      setList(tempList);
       setAlbums(tempAlbums);
     } else {
-      const firstElement = tempState.shift();
-      tempState.push(firstElement);
+      const firstElement = tempList.shift();
+      tempList.push(firstElement);
 
-      setState(tempState);
+      setList(tempList);
     }
-  }, [state, albums]);
+  }, [list, albums]);
 
   React.useEffect(() => {
     const intervalId = setInterval(tick, 1000);
@@ -38,7 +38,7 @@ const App = () => {
     <main className="App">
       <div className={styles.block}>
         <Form setAlbums={setAlbums} />
-        <List state={state} />
+        <List list={list} />
       </div>
     </main>
   );
