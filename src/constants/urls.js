@@ -1,0 +1,1 @@
+export const ALBUMS_URL = (param) => `https://itunes.apple.com/search?term=${param}`;

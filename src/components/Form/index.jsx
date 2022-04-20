@@ -1,9 +1,10 @@
 import React from "react";
-import T from 'prop-types';
+import T from "prop-types";
 
 import styles from "./Form.module.css";
 
-const ALBUMS_URL = (param) => `https://itunes.apple.com/search?term=${param}`;
+import { ALBUMS_URL } from "../../constants/urls";
+import { LETTERS } from "../../constants/letters";
 
 const getAlbums = async (param) => {
   try {
@@ -15,7 +16,7 @@ const getAlbums = async (param) => {
   }
 };
 
-const Form = ({ setAlbums }) => {
+const Form = ({ setList, setAlbums }) => {
   const [value, setValue] = React.useState("");
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -28,10 +29,9 @@ const Form = ({ setAlbums }) => {
     const sortedAlbums = albums.results
       .sort((a, b) => a.collectionName.localeCompare(b.collectionName))
       .splice(0, 5)
-      .map((album) => {
-        return album.collectionName;
-      });
+      .map((album) => album.collectionName);
 
+    setList(LETTERS);
     setAlbums(sortedAlbums);
   };
 
@@ -49,7 +49,7 @@ const Form = ({ setAlbums }) => {
 };
 
 Form.propTypes = {
-  setAlbums: T.func
-}
+  setAlbums: T.func,
+};
 
 export default React.memo(Form);

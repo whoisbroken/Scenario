@@ -8,7 +8,7 @@ const List = ({ list }) => {
     <ul className={styles.list}>
       {list.map((item, index) => {
         return (
-          <li key={item + index} className="li">
+          <li className={styles.item} key={item + index} >
             {item}
           </li>
         );
