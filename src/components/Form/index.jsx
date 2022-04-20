@@ -3,18 +3,8 @@ import T from "prop-types";
 
 import styles from "./Form.module.css";
 
-import { ALBUMS_URL } from "../../constants/urls";
 import { LETTERS } from "../../constants/letters";
-
-const getAlbums = async (param) => {
-  try {
-    const response = await fetch(ALBUMS_URL(param));
-
-    return response.json();
-  } catch {
-    throw new Error("Api Error!");
-  }
-};
+import { getAlbums } from '../../utils/requests';
 
 const Form = ({ setList, setAlbums }) => {
   const [value, setValue] = React.useState("");
@@ -49,7 +39,8 @@ const Form = ({ setList, setAlbums }) => {
 };
 
 Form.propTypes = {
-  setAlbums: T.func,
+  setList: T.func,
+  setAlbums: T.func
 };
 
 export default React.memo(Form);
